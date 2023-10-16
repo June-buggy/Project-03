@@ -8,7 +8,7 @@ Project Objectives:
 - Develop an intuitive and user-friendly dashboard for music analytics.
 - Analyze Spotify API data to generate insightful visualizations.
 - Implement interactive features allowing users to explore genres, artists, and geographical trends.
-- 
+
 Features and Functionalities:
 
 1. Homepage:
