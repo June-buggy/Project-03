@@ -25,10 +25,13 @@ Features and Functionalities:
 4. Geographical Trends:
 - Interactive map displays popular genres or artists in different countries with a color gradient indicating popularity levels.
 - Country details section provides additional insights about selected countries, such as top genres and artists.
+
 Possible Additional Features:
 - Data export functionality allows users to export visualizations and analysis results in CSV or PDF formats.
 - Comparative analysis feature enables users to compare their listening habits with global or regional trends.
 - Real-time/Scheduled updates ensure the data and insights remain current and accurate.
 - Data quality feedback mechanisms allow users to provide feedback, improving analytics accuracy.
+
 Conclusion: The Spotify Music Analytics Dashboard aims to provide a comprehensive and engaging music analytics experience. By focusing on intuitive design, interactive features, and insightful data visualizations, our dashboard will empower users to explore their music preferences and gain valuable insights into global music trends.
+
 We are excited about this project and look forward to developing a robust and user-friendly Spotify Music Analytics Dashboard. 
