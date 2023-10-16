@@ -1,12 +1,16 @@
 # Project-03
 
 Project Title: Spotify Music Analytics Dashboard
+
 Project Overview: Our project, the Spotify Music Analytics Dashboard, aims to provide in-depth insights into users’ music listening habits based on the Spotify API data. The dashboard will offer interactive visualizations and trends for use in broad data analytics, rather than for a specific user with associated authentication steps. Users of the dashboard will be able to explore popular genres, top artists, and geographical music preferences so assist with understanding global music trends.
+
 Project Objectives:
 - Develop an intuitive and user-friendly dashboard for music analytics.
 - Analyze Spotify API data to generate insightful visualizations.
 - Implement interactive features allowing users to explore genres, artists, and geographical trends.
+- 
 Features and Functionalities:
+
 1. Homepage:
 - User-friendly interface with dropdown menus for genre selection, time periods, and countries.
 - Apply button triggers dynamic visualizations update for top genres, artists, and listening trends.
