@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Spotify Dashboard</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -32,10 +32,10 @@
         </div>
       </div>
       <div class="col-md-5">
-        <div id="bar"></div>
+        <div id="popularity-chart"></div> <!-- Chart container for popularity -->
       </div>
       <div class="col-md-5">
-        <div id="gauge"></div>
+        <div id="genre-chart"></div> <!-- Chart container for genre -->
       </div>
     </div>
     <div class="row">
@@ -47,7 +47,7 @@
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="./static/js/app.js"></script>
+  <script src="app.js"></script>
 
 </body>
 

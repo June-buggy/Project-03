@@ -2,6 +2,13 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: lime;; /* Set the background color to black */
+  color: rgb(0, 0, 0); /* Set the text color to lime */
+  
+  /* Apply additional styles as needed */
+  .container {
+    padding: 20px; /* Add padding to the container */
+  }
 }
 
 .btn.dropdown-toggle {
