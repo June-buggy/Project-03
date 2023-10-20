@@ -35,6 +35,15 @@ function initialize() {
             dropdownMenu.append("option").text(genre).property("value", genre);
         })
 
+
+
+        let dropdownFeatures = d3.select('#selFeature');
+
+        let features = ['danceability', 'energy', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence']
+        features.forEach(feature => {
+            dropdownFeatures.append('option').text(feature).property("value", feature);
+        })
+
         console.log()
         // Use the first sample from the list to build the initial plots
         //let name = names[0];
@@ -48,6 +57,8 @@ function initialize() {
 
         // creating features chart with default genre as acoustic
         createFeaturesChart(data, 'acoustic')
+        barChart(data, 'acoustic')
+        bubbleChart(data, 'danceability')
    });
 }
 // Get a new data each time when a new sample is selected
@@ -63,8 +74,7 @@ function createFeaturesChart(data, genre){
     let filteredData = data.filter((row) => {
         return row.track_genre == genre
     })
-    console.log('createFeaturesChart')
-    console.log(filteredData)
+    
 
     // creating empty arrays to hold the individual feature scores for each song
     let danceability = []
@@ -120,14 +130,21 @@ function createFeaturesChart(data, genre){
 
     //console.log(dataObject)
 
+    let capitalGenre = genre.charAt(0).toUpperCase() + genre.slice(1)
+
     // creating vega lite object
     let vegaObject = {
+        "title": "Feature Score Distribution for " + capitalGenre + " Songs",
+        "width": 600,
+        "height": 400,
+        
         "data": {
             "values": dataObject
         },
         "mark": {
           "type": "boxplot",
-          "extent": "min-max"
+          "extent": "min-max",
+          "size": 40
         },
         "encoding": {
           "y": {"field": "Feature", "type": "nominal"},
@@ -141,16 +158,135 @@ function createFeaturesChart(data, genre){
     
     // embedding vega lite visualization in html file (id = vis)
     vegaEmbed('#vis', vegaObject);
+
+    //console.log(filteredData)
+    //console.log(dataObject)
     
 
 
 }
 
+function barChart(data, genre){
+    // BAR CHART
+
+    // filtering json dataset for the selected genre
+    let filteredData = data.filter((row) => {
+        return row.track_genre == genre
+    })
+    
+
+    let tracks = []
+    let popularity = []
+
+    filteredData.forEach((row) => {
+        tracks.push(row.track_name)
+        popularity.push(row.popularity)
+    })
+
+    // creating data traces for bar chart
+    let barTrace = {
+        y: tracks,
+        x: popularity,
+        text: tracks,
+        type: "bar",
+        //sorting bars
+        transforms:[{
+            type: 'sort',
+            target: 'x',
+            order: 'ascending'
+        }],
+        //changing graph to horizontal
+        orientation: 'h'
+    };
+
+    let capitalGenre = genre.charAt(0).toUpperCase() + genre.slice(1)
+    // Apply the group barmode to the layout
+    let layout = {
+        title: "Top Songs for the " + capitalGenre + " Genre"
+    };
+
+    // taking only top ten otu ids
+    barTrace.x = barTrace.x.slice(0, 10)
+    barTrace.y = barTrace.y.slice(0, 10)
+
+    let barData = [barTrace]
+
+    Plotly.newPlot("bar", barData, layout);
+}
+
+
+function bubbleChart(data, feature){
+    // BUBBLE CHART
+
+    //let features = ['danceability', 'energy', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence']
+    
+
+    let scores = []
+
+    let genres = []
+    data.forEach((song) => {
+        // getting all genres
+        genres.push(song.track_genre)
+    });
+    
+    // creating array of unique genres for dropdown
+    let unique_genres = [... new Set(genres)]
+
+    for(let i = 0; i < unique_genres.length; i++){
+        let filteredData = data.filter((row) => {
+            return row.track_genre == unique_genres[i]
+        })
+
+        let sum = 0
+        let count = 0
+        filteredData.forEach((row) => {
+            sum += parseFloat(row[feature])
+            count += 1
+            
+        })
+        let average = sum / count
+        scores.push(average)
+        //console.log(average)
+    }
+
+    let score_sizes = scores.map(score => score * 30)
+    console.log(scores)
+    console.log(score_sizes)
+    
+    //console.log(scores)
+    //console.log(unique_genres)
+    let trace = {
+        x: unique_genres,
+        y: scores,
+        mode: 'markers',
+        marker: {
+            size: score_sizes,
+            color: [...Array(unique_genres.length).keys()],
+            colorscale: 'Greens',
+            line: {
+                color: 'black',
+                width: 1
+            }
+        },
+        text: scores
+    }
+
+    let bubbleData = [trace]
+    Plotly.newPlot("bubble", bubbleData)
+}
+
 
 // updates features chart when genre is changed
-function updatePlotly(genre){
+function updatePlotlyGenre(genre){
     d3.json(url).then(function(data){
         createFeaturesChart(data, genre)
+        barChart(data, genre)
+    });
+}
+
+function updatePlotlyFeature(feature){
+    d3.json(url).then(function(data){
+        bubbleChart(data, feature)
     });
 }
 initialize();
