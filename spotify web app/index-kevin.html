@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
-    <title>Document</title>
+    <title>Spotify Data Dashboard</title>
 </head>
 <body>
 
@@ -19,15 +19,19 @@
     <div class="container">
         <div class="row">
           <div class="col-md-12 jumbotron text-center">
-            <h1>Belly Button Biodiversity Dashboard</h1>
-            <p>Use the interactive charts below to explore the dataset</p>
+            <h1>Music and Podcasts</h1>
+            <p>Use the charts below to explore the songs, albums, and podcasts on Spotify!</p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-2">
             <div class="well">
               <h5>Genre:</h5>
-              <select id="selDataset" onchange="updatePlotly(this.value)"></select>
+              <select id="selDataset" onchange="updatePlotlyGenre(this.value)"></select>
+            </div>
+            <div class="well">
+              <h5>Feature:</h5>
+              <select id="selFeature" onchange="updatePlotlyFeature(this.value)"></select>
             </div>
             <div class="panel panel-primary">
               <div class="panel-heading">
@@ -35,7 +39,10 @@
               </div>
               <div id="sample-metadata" class="panel-body"></div>
             </div>
+            
+            
           </div>
+          
           <div class="col-md-5">
             <div id="popularity-chart"></div>
           </div>
@@ -45,16 +52,25 @@
         </div>
         <div class="row">
           <div class="col-md-12">
+            <div id="bar"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
             <div id="vis"></div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div id="bubble"></div>
+          </div>
+        </div>
       </div>
-    <h1>Welcome to the HomePage!</h1>
 
     <div id="simpleplot">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="static/js/app.js"></script>
+    <script src="static/js/app-kevin.js"></script>
     </div>
 </body>
 </html>
