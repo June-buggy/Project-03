@@ -17,15 +17,29 @@ from flask import Flask, jsonify
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("sqlite:///database.sqlite")
 
-# reflect an existing database into a new model
+# Assuming you have created your engine
+engine = create_engine('sqlite:///spotify_database.sqlite')
+
+# Create a Base object and reflect the tables
 Base = automap_base()
-# reflect the tables
 Base.prepare(autoload_with=engine)
 
+# Print the keys (table names) and mapped classes
+print("Table Names (Keys) in Base.classes:")
+print(list(Base.classes.keys()))
+
+print("\nMapped Classes in Base.classes:")
+print(Base.classes)
+
+
 # Save reference to the table
-Spotify = Base.classes.Spotify_Dataset1
+class SpotifyData(Base):
+    __tablename__ = 'spotify_data'
+    # define columns here...
+Spotify = SpotifyData
+
+Spotify = Base.classes.track_data
 
 #################################################
 # Flask Setup
