@@ -1,34 +1,29 @@
 //set up url
 const url = "https://raw.githubusercontent.com/June-buggy/Project-03/main/Resources/dataset.json"
 
-//set up data promise 
-//const dataPromise = d3.json(url);
-//    console.log("Data Promise: ", dataPromise);
 
-//fetch data
-d3.json(url).then(function(data){
-    console.log(data);
-});
+// //fetch data
+// d3.json(url).then(function(data){
+//     console.log(data);
+// });
 
 
 function initialize() {
     d3.json(url).then(data => {
-        console.log("Dataset for viewing in log...", data);
 
-        // Use D3 to select the dropdown menu
-        //var names = data.track_name;
-
+        // selecting dropdown menu to populate it with the full list of genres
         let dropdownMenu = d3.select("#selDataset");
         
+        // creating an array to hold genre of every song
         let genres = []
         data.forEach((song) => {
             // getting all genres
             genres.push(song.track_genre)
         });
         
-        // creating array of unique genres for dropdown
+        // reducing genres to only unique genres with no repeats
         let unique_genres = [... new Set(genres)]
-        //console.log(unique_genres)
+
 
         // adding unique genres to a dropdown
         unique_genres.forEach(genre => {
@@ -36,37 +31,24 @@ function initialize() {
         })
 
 
-
+        // selecting dropdown for song features
         let dropdownFeatures = d3.select('#selFeature');
 
+        // array of different song features of interest
         let features = ['danceability', 'energy', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence']
+
+        // adding features to dropdown
         features.forEach(feature => {
             dropdownFeatures.append('option').text(feature).property("value", feature);
         })
 
-        console.log()
-        // Use the first sample from the list to build the initial plots
-        //let name = names[0];
-
-        // Call the functions to make the demographic panel, bar chart, and bubble chart
-        //demo(name);
-        //bar(name);
-        //bubble(name);
-        //gauge(name);
-        //createCharts(data)
-
-        // creating features chart with default genre as acoustic
+        // creating charts with default genre as acoustic, default feature as danceabilitya
         createFeaturesChart(data, 'acoustic')
         barChart(data, 'acoustic')
         bubbleChart(data, 'danceability')
    });
 }
-// Get a new data each time when a new sample is selected
-//function optionChanged(selectedValue) {
-   //demo(selectedValue);
-   //bar(selectedValue);
-   //bubble(selectedValue);
-   //gauge(selectedValue)
+
 
 function createFeaturesChart(data, genre){
     
@@ -128,8 +110,7 @@ function createFeaturesChart(data, genre){
         dataObject.push({Feature: 'valence', Score: val})
     })
 
-    //console.log(dataObject)
-
+    // creating string to list capitalized genre in chart title
     let capitalGenre = genre.charAt(0).toUpperCase() + genre.slice(1)
 
     // creating vega lite object
@@ -159,11 +140,6 @@ function createFeaturesChart(data, genre){
     // embedding vega lite visualization in html file (id = vis)
     vegaEmbed('#vis', vegaObject);
 
-    //console.log(filteredData)
-    //console.log(dataObject)
-    
-
-
 }
 
 function barChart(data, genre){
@@ -174,7 +150,7 @@ function barChart(data, genre){
         return row.track_genre == genre
     })
     
-
+    // holding track names and popularity of each track
     let tracks = []
     let popularity = []
 
@@ -189,6 +165,8 @@ function barChart(data, genre){
         x: popularity,
         text: tracks,
         type: "bar",
+        hovertemplate:  '<br><b>Popularity</b>: %{x}<br>' +
+                        '<b>Song</b>: %{text}<extra></extra>',
         //sorting bars
         transforms:[{
             type: 'sort',
@@ -199,13 +177,15 @@ function barChart(data, genre){
         orientation: 'h'
     };
 
+
+    // creating string to list capitalized genre in chart title
     let capitalGenre = genre.charAt(0).toUpperCase() + genre.slice(1)
     // Apply the group barmode to the layout
     let layout = {
         title: "Top Songs for the " + capitalGenre + " Genre"
     };
 
-    // taking only top ten otu ids
+    // taking only top ten songs based on popularity
     barTrace.x = barTrace.x.slice(0, 10)
     barTrace.y = barTrace.y.slice(0, 10)
 
@@ -220,18 +200,19 @@ function bubbleChart(data, feature){
 
     //let features = ['danceability', 'energy', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence']
     
-
+    // holding song scores (based on feature) and song genres
     let scores = []
-
     let genres = []
+
     data.forEach((song) => {
-        // getting all genres
+        // getting all genres of each song
         genres.push(song.track_genre)
     });
     
     // creating array of unique genres for dropdown
     let unique_genres = [... new Set(genres)]
 
+    // calculating average score for each genre for the selected feature
     for(let i = 0; i < unique_genres.length; i++){
         let filteredData = data.filter((row) => {
             return row.track_genre == unique_genres[i]
@@ -249,16 +230,17 @@ function bubbleChart(data, feature){
         //console.log(average)
     }
 
+    // calculating a bubble size for the score of each genre
     let score_sizes = scores.map(score => score * 30)
-    console.log(scores)
-    console.log(score_sizes)
+
     
-    //console.log(scores)
-    //console.log(unique_genres)
+    // creating bubble chart
     let trace = {
         x: unique_genres,
         y: scores,
         mode: 'markers',
+        hovertemplate:  '<br><b>Genre</b>: %{x}<br>' +
+                        '<b>Score:</b>: %{y}<extra></extra>',
         marker: {
             size: score_sizes,
             color: [...Array(unique_genres.length).keys()],
@@ -270,20 +252,26 @@ function bubbleChart(data, feature){
         },
         text: scores
     }
+    // creating string to list capitalized feature in chart title
+    let capitalScore = feature.charAt(0).toUpperCase() + feature.slice(1)
+
+    let layout = {
+        title: capitalScore + " Scores for Each Genre"
+    };
 
     let bubbleData = [trace]
-    Plotly.newPlot("bubble", bubbleData)
+    Plotly.newPlot("bubble", bubbleData, layout)
 }
 
 
-// updates features chart when genre is changed
+// updates genre chart when selected genre is changed
 function updatePlotlyGenre(genre){
     d3.json(url).then(function(data){
         createFeaturesChart(data, genre)
         barChart(data, genre)
     });
 }
-
+// updates features chart when selected feature is changed
 function updatePlotlyFeature(feature){
     d3.json(url).then(function(data){
         bubbleChart(data, feature)
