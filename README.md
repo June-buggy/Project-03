@@ -1,34 +1,36 @@
-#Spotify Data Analysis Web App
-##Table of Contents
-About
-Contributors
-Getting Started/File Descriptions
-Usage
-Features
-Data Sources
-License
-##About
+# Spotify Data Analysis Web App
+![alt text](https://d3.harvard.edu/platform-digit/wp-content/uploads/sites/2/2020/04/spotify-logo-1920x1080-2.jpg)
+## Table of Contents
+* About
+* Contributors
+* Getting Started/File Descriptions
+* Usage
+* Features
+* Data Sources
+* License
+## About
 This project is a data analysis web app that utilizes the Spotify API to fetch music data, analyze it, and present insights through a user-friendly web interface. With this app, users can discover interesting statistics about their favorite songs, artists, and genres on Spotify.
+
 Key features include:
-Visualizing audio features like danceability, energy, and tempo based on genre.
-Displaying top tracks.
-##Contributors 
-June Higgins 
-Kevin Deng 
-Anusha 
-Olesya Gaeva
-Sophie Barstein
+* Visualizing audio features like danceability, energy, and tempo based on genre.
+* Displaying top tracks.
+## Contributors 
+* June Higgins 
+* Kevin Deng 
+* Anusha 
+* Olesya Gaeva
+* Sophie Barstein
 
 
-##Getting Started/File Descriptions 
+## Getting Started/File Descriptions 
 (Insert files)
-Usage
+## Usage
 Use the drop down menus to get analytics based on  genre and audio features. 
-Features
-Genre dropdown generates 
-Audio feature dropdown 
-##Data Sources
+## Features
+* Genre dropdown generates 
+* Audio feature dropdown 
+## Data Sources
 Spotify API
-##License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
