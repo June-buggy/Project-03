@@ -1,13 +1,13 @@
 # Spotify Data Analysis Web App
 ![alt text](https://d3.harvard.edu/platform-digit/wp-content/uploads/sites/2/2020/04/spotify-logo-1920x1080-2.jpg)
 ## Table of Contents
-* About
-* Contributors
-* Getting Started/File Descriptions
-* Usage
-* Features
-* Data Sources
-* License
+* [About](https://github.com/June-buggy/Project-03/edit/main/README.md#about)
+* [Contributors](https://github.com/June-buggy/Project-03/edit/main/README.md#contributors)
+* [Getting Started/File Descriptions](https://github.com/June-buggy/Project-03/edit/main/README.md#getting-startedfile-descriptions)
+* [Usage](https://github.com/June-buggy/Project-03/edit/main/README.md#usage)
+* [Features](https://github.com/June-buggy/Project-03/edit/main/README.md#features)
+* [Data Sources](https://github.com/June-buggy/Project-03/edit/main/README.md#data-sources)
+* [License](https://github.com/June-buggy/Project-03/edit/main/README.md#license)
 ## About
 This project is a data analysis web app that utilizes the Spotify API to fetch music data, analyze it, and present insights through a user-friendly web interface. With this app, users can discover interesting statistics about their favorite songs, artists, and genres on Spotify.
 
