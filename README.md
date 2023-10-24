@@ -3,7 +3,7 @@
 ## Table of Contents
 * [About](https://github.com/June-buggy/Project-03#about)
 * [Contributors](https://github.com/June-buggy/Project-03#contributors)
-* [Getting Started/File Descriptions](https://github.com/June-buggy/Project-03#getting-startedfile-descriptions)
+* [Getting Started](https://github.com/June-buggy/Project-03#getting-started)
 * [Usage](https://github.com/June-buggy/Project-03#usage)
 * [Features](https://github.com/June-buggy/Project-03#features)
 * [Data Sources](https://github.com/June-buggy/Project-03#data-sources)
@@ -22,8 +22,8 @@ Key features include:
 * Sophie Barstein
 
 
-## Getting Started/File Descriptions 
-(Insert files)
+## Getting Started
+To begin, download the index.html, styles.css, and app.js files onto your local machine and run the app in your browswer. 
 ## Usage
 Use the drop down menus to get analytics based on  genre and audio features. 
 ## Features
