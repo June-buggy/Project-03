@@ -23,7 +23,7 @@ Key features include:
 
 
 ## Getting Started
-To begin, download the index.html, styles.css, and app.js files onto your local machine and run the app in your browser. Make sure to have d3, Plotly, and Vega Lite downloaded on your machine before running the project. 
+To begin, download the index.html, styles.css, and Spotify_Flask_App.py files onto your local machine and run the app in your browser. Make sure to have d3, Plotly, and Vega Lite downloaded on your machine before running the project. 
 ## Usage
 Use the drop down menus to get analytics based on  genre and audio features. 
 ## Features
