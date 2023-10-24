@@ -17,7 +17,7 @@ Key features include:
 ## Contributors 
 * June Higgins 
 * Kevin Deng 
-* Anusha 
+* Anusha Sekhar
 * Olesya Gaeva
 * Sophie Barstein
 
