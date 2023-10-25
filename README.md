@@ -30,8 +30,9 @@ Use the drop down menus to get analytics based on  genre and audio features.
 * Genre dropdown generates 
 * Audio feature dropdown 
 ## Data Sources
-* Spotify API
-* https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data
+* Spotify API  
+
+  <a href="https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data" Spotify API </a>.
   * 1. This is a dataset of Spotify tracks over a range of 125 different genres.
   * 2. This data has scores including but not limited to danceability,energy,loudness,speechiness,instrumentalness and valence that help with analysis.
   * 3. Data file size ~20MB
