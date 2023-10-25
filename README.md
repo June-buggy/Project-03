@@ -30,7 +30,6 @@ Use the drop down menus to get analytics based on  genre and audio features.
 * Genre dropdown generates 
 * Audio feature dropdown 
 ## Data Sources
-* Spotify API
  
 
   <a href="https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data"> Spotify API </a>.
